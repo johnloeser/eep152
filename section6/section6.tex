@@ -1,0 +1,99 @@
+\documentclass[12pt,english]{article}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{caption}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{changepage}
+\onehalfspacing
+\usepackage{babel}
+\newcommand{\expec}{\ensuremath{\mathbb E}}
+\begin{document}
+\begin{center}
+{\Large{}Section 6: Microcredit and meta-analysis} \\
+{\large{J-PAL (2015)}}
+\par\end{center}{\Large \par}
+
+\begin{center}
+EEP 152
+\par\end{center}
+
+\begin{center}
+October 12, 2016
+\par\end{center}
+
+\begin{itemize}
+	\setlength\itemsep{-0.5em}
+	\item Microcredit model (15 min)
+	\item Grameen Bank (10 min)
+	\item Aggregating microcredit evidence (25 min)
+\end{itemize}
+A copy of a public version of the paper, along with the section notes, is available on the section Github at \href{github.com/johnloeser/eep152}{github.com/johnloeser/eep152} in the ``section6'' folder.
+
+\section{Microcredit model}
+
+Last section, we talked about sources of credit market failures. Two that came up were adverse selection (AS, riskier borrowers may be willing to borrow at higher interest rates than safe borrowers) and moral hazard (MH, borrowers have a lower cost of default at higher interest rates).
+
+One potential solution we discussed was collateralization - if borrowers have an asset with value greater than the size of the loan, then they can offer to let the bank seize that asset if they fail to pay back the loan. This should eliminate MH, since the cost of default is now greater than the cost of repayment. AS may still be a problem -- risky borrowers with a high potential return to borrowing may be willing to bear the downside risk if their investment does not pay out in exchange for the possibility of having a large success, forcing the bank to raise interest rates, and potentially forcing safe borrowers out of the market, once again leading to a credit market failure. The bank could fix this by demanding more collateral, but the poor often have few physical assets which can be seized.
+
+Another possibility we discussed was dynamic incentives -- the bank could make offers of future credit contingent on the repayment of current loans. There are a number of ways to strengthen these incentives -- loans could progressively grow in size, or interest rates could fall, after multiple repayments. These incentives can reduce MH (since there is now a strong incentive to repay) and AS (since risky borrowers will likely fail to pay back quickly, the incentives are weaker for them, while the early loans are not attractive). However, for impatient borrowers, MH may still be a problem. Additionally, the unattractive initial loan offers necessary for strong dynamic incentives may force safe borrowers out of the market.
+
+Microcredit has proposed a solution to this model. First, households must form groups of borrowers instead of acting individually. Second, dynamic incentives now act on the level of the group -- the entire group's future access to loans is conditional on the repayment of loans by \textbf{every member of the group}.
+
+By offering dynamic incentives at the group level, each member of the group now wants every other member of the group to pay back their loan. As a result, the group optimally will punish members who default, since the rest of the group will lose access to future loans because of the default.\footnote{Recall that in our moral hazard model with dynamic incentives, repayment occurred if $R < (N + 1)(R - (1 + i)L)$. The group strengthens this by punishing failure to repay. Suppose the group will punish with value $-P$ to a member who does not repay. In this case, repayment occurs if $R - P < (N+1)(R - (1 + i)L)$, so there is strictly more repayment with group incentives. If the punishment is severe enough, no member will default.} While it is difficult for the bank to punish individuals who default (since those individuals have little physical collateral), groups can select individuals they know from whom they can seize social collateral. Effectively, this means that one will form a group with their friends, and they'll stop being friends with group members who default (or restrict access to future informal credit). Additionally, the group will select individuals who have a low probability of default. The asymmetric information problems the bank faces are much weaker for individuals in a community who interact frequently (and probably grew up together), correcting adverse selection. 
+
+Why might this not be a panacea? First, small loans involve significant transaction costs, and as a result interest rates on these loans tend to be high (often 30\% to 100\% annually), although often lower than other sources of credit. These loans may be valuable in smoothing consumption, increasing welfare, but with such high interest rates transformative change may be difficult, since the high interest will eat into any profits. Second, the correction for moral hazard of social collateral may be too strong -- as a result, households may make less risky investments (to avoid defaulting and the significant associated social costs), which may have higher expected returns. Third, if households really are in poverty traps, the small size of the loans may be insufficient to allow households to escape these poverty traps. Fourth, the households impacted by microfinance may have the lowest returns to credit -- riskier borrowers (excluded from the selection process) may have higher returns to credit, while households which already have access to credit may have the highest returns.
+
+\section{Grameen Bank}
+
+Given our model, while we should expect positive effects from the introduction of microcredit, the economic magnitude of these effects is ambiguous -- results could be small or large. How can we estimate this magnitude?
+
+Grameen Bank developed the modern model of microfinance, and additionally operated at a time when there were much fewer alternative sources of credit for the poor. As a result, the best estimates of the effects of microcredit might come from the effect of Grameen Bank, since later estimates may be biased downward if the households with the highest returns to credit already have access.
+
+In class, we mentioned that Pitt and Khandker (1998) estimated large positive returns to microcredit ($\approx$15 cents increased consumption per dollar of borrowing). Alternatively, Morduch (1998) estimates no effects on consumption using the same data, but finds that eligibility for access to Grameen Bank reduces vulnerability. Why the difference?
+
+Pitt and Khandker (1998) effectively make use of the fact that households with small landholdings are eligible for access, while households with large landholdings are not. This allows them to estimate (with controls\footnote{They also employ some more complicated statistical machinery to estimate this, but we'll ignore this for exposition.})
+$$ \beta = \overline{Y_{\text{eligible}}} - \overline{Y_{\text{ineligible}}} $$
+where $\beta$ is the effect of Grameen Bank on outcome $Y$. Morduch (1998) claims that this estimation may be biased -- in particular, eligible and ineligible households may be different for reasons besides access to Grameen Bank.\footnote{Morduch (1998) also claims that \textit{de jure} eligibility rules were not followed, and instead uses \textit{de facto} eligibility.} Instead, 
+Morduch uses the fact that some villages did not have Grameen Bank. Calling those villages ``control'' villages, and the villages which have Grameen Bank ``treatment'' villages. He then estimates a difference-in-differences -- comparing the difference between eligible and ineligible households in treatment villages to the same difference in control villages.
+$$ \beta = (\overline{Y_{\text{eligible,treatment}}} - \overline{Y_{\text{ineligible,treatment}}}) - (\overline{Y_{\text{eligible,control}}} - \overline{Y_{\text{ineligible,control}}}) $$
+The identifying assumption here is different -- while Pitt and Khandker (1998) assume that absent Grameen Bank, eligible and ineligible households would have had the same outcome, Morduch (1998) assumes that absent Grameen Bank, the difference between eligible and ineligible households would have been the same in treatment and control villages.
+
+Can we test these assumptions? Sort of. Fundamentally, we never observe this counterfactual, so in that sense it's untestable. But, if we had data from before the existence of Grameen Bank on these villages, we would expect the estimators from both Pitt and Khandker (1998) and Morduch (1998) to estimate zero effect on this pre-period data. Finding a non-zero effect would suggest a problem with the estimator, while finding a zero effect would be consistent with the estimator being correct. Ideally though, we would like to be able to assume that, absent the treatment, our two groups really would have been the same.
+
+\section{Aggregating microcredit evidence}
+
+An alternative way to estimate the effect of microcredit would be an RCT. Ideally, we could randomly assign Grameen Bank to some villages, but not others. In this case, we can guarantee that absent Grameen Bank, the two groups would have the same outcomes\footnote{With some inherent statistical uncertainty.}, since it's random which group receives access to Grameen Bank. In this case, we can estimate
+$$ \beta = \overline{Y_{treatment}} - \overline{Y_{control}} $$
+
+Unfortunately, microfinance institutions typically do not randomly decide where to open a branch. Except\ldots when groups of researchers convince them to do so! In particular, 6 different teams of researchers worked\footnote{Plus a 7th which was included later.} independently on RCTs of the effects of microfinance, and simultaneously published their results (see Banerjee, Karlan, and Zinman (2015) for a discussion) in a special issue of AEJ: Applied Economics. The RCTs were implemented across a wide variety of contexts, and were randomized along different dimensions, summarized nicely in J-PAL (2015).
+
+\begin{center}
+\{See Table 1 from J-PAL (2015)\}
+\end{center}
+
+Taken together, the result paint a bleak picture for the transformative potential of microfinance. First, demand for microfinance generally seemed low -- in places where the studied population was representative, take up only increased by 13 to 25pp.
+
+\begin{center}
+	\{See Figure 2 from J-PAL (2015)\}
+\end{center}
+
+Second, the main channel through which microfinance has been hypothesized to transform livelihoods is business ownership -- households with no previous access to credit can take small loans, start businesses, and accumulate assets until they escape from a poverty trap. Generally, evidence across the studies was that effects on business ownership were extremely modest.
+
+\begin{center}
+	\{See Figure 3 and Table 2 from J-PAL (2015)\}
+\end{center}
+
+Is this the end of microfinance then? No, for two reasons. First, we've just looked at the effects of the different studies -- is there a way to aggregate the effects to learn something more about the average effect and how the effects vary across contexts? In particular, any one study may be underpowered on its own, but aggregated together we may be able to make a more precise statement about the effect of microfinance. Meager (2016) runs a meta-analysis on these RCTs, basically a more sophisticated way of averaging the effects, accounting for the fact that the effect of microfinance may be different in different places, allowing us to make more precise statements about the average effect of microfinance. She generally finds small average effects, but households that previously owned a business appear to have larger average (but more variable) benefits. This heterogeneity suggests that microfinance may be transformative for some households, but not most, in the same way that the effects of cash grants on business profits were extremely variable.
+
+Second, recall from our model the reasons we thought that microfinance might not work -- high interest rates, borrowers taking insufficient risks, constrained lending, and low return households receiving loans. Instead, we can interpret this to suggest that new innovations in microfinance may be necessary.
+
+A new article in the Economist (\href{http://www.economist.com/news/international/21708258-microlending-booming-once-again-if-it-help-people-out-poverty-though-it}{http://www.economist.com/news/international/21708258-microlending-booming-once-again-if-it-help-people-out-poverty-though-it}) mentions some innovations researchers have experimented with. First, they discuss two examples where longer grace periods for repayment were randomly offered for the loans. Although the resulting increase in default rates observed isn't desirable for the microfinance institution, borrowers appeared to take more risks, resulting in much bigger increases in household incomes and profits. Second, they discuss One Acre Fund, an NGO in East Africa which lends agricultural inputs to smallholder farmers and provides extension services, and requests repayment after harvest. Input loans allow them to manage risk effectively (since the distribution of harvests is fairly stable, if variable), while taking re-payment when farmers have the most cash (immediately post-harvest) maximizes re-payment probability. Third, although not mentioned in the article, some researchers at Berkeley are experimenting with loans collateralized with future cash transfers. These loans can be lent at extremely low interest rates, since there's near-zero risk (the transfers are deposited monthly by the government into the borrowers' accounts at the banks), testing the importance of the high interest rates. These innovations might help microfinance reach the large share of households who appear to benefit only marginally from the traditional microfinance model.
+
+\end{document}
