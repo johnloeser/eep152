@@ -94,5 +94,5 @@ reg4 <- lm(lgdppc ~ yr_sch + factor(year) + factor(Country.Code), data = data)
 summary(reg3)
 summary(reg4)
 
-# file.remove("bl.csv")
-# unlink("WDI_csv", recursive = T)
+file.remove("bl.csv")
+unlink("WDI_csv", recursive = T)
