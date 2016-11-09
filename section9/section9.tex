@@ -1,0 +1,91 @@
+\documentclass[12pt,english]{article}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{caption}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{changepage}
+\onehalfspacing
+\usepackage{babel}
+\newcommand{\expec}{\ensuremath{\mathbb E}}
+\begin{document}
+\begin{center}
+{\Large{}Section 9: PROGRESA and Policy} \\
+{\large{}Schultz (2004), Vivalt (2016)}
+\par\end{center}{\Large \par}
+
+\begin{center}
+EEP 152
+\par\end{center}
+
+\begin{center}
+November 9, 2016
+\par\end{center}
+
+\begin{itemize}
+	\setlength\itemsep{-0.5em}
+	\item PROGRESA (20 min)
+	\item Policy and RCTs (25 min)
+	\item (5 min)
+\end{itemize}
+A copy of a public version of the papers, along with the section notes, are available on the section Github at \href{github.com/johnloeser/eep152}{github.com/johnloeser/eep152} in the ``section9'' folder.
+
+\section{PROGRESA}
+
+Recall last section we talked about measuring education quality, and how we could compare across interventions using CEA to try to find the best ways to approach approving education quality. What we didn't spend as much time talking about was where these estimates came from. We've seen a lot of RCTs, but is this the only way for policy makers to evaluate the cost effectiveness of potential policies?
+
+PROGRESA is a great case study for why RCTs are an effective way to test a potential policy and to evaluate its efficacy. The context and objective was fairly straightforward -- the government wanted to implement a welfare program, but for political reasons simply giving poor households money was not politically viable. The opposition generally argued it would reduce work incentives, and the poor would just use the money on alcohol.
+
+To increase its feasibility, a conditionality was added to the cash transfers -- families would be compensated if their children got vaccinated and attended school. As we saw in class, a simple DID reveals that the program increased school attendance by 2/3 of a year per student, on average.
+$$ \left( \overline{S}^{2000}_{P,E} - \overline{S}^{1998}_{P,E} \right) - \left( \overline{S}^{2000}_{NP,E} - \overline{S}^{1998}_{NP,E} \right) = 0.67 $$
+where $P$, $NP$, and $E$ represent PROGRESA villages, non-PROGRESA villages, and eligible students.
+
+Next, recall our simple model of education, where households now have concave utility over consumption in each period. This gave us
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c}
+ & R (Rich) & P (Poor) \\
+\hline
+S (School) & $u(w_{1} - c) + \beta u(w_{1})$ & $u(w_{0} - c) + \beta u(w_{1})$ \\
+\hline
+NS (No school) & $u(w_{1}) + \beta u(w_{0})$ & $u(w_{0}) + \beta u(w_{1})$  
+\end{tabular}
+\end{table}
+What are the effects of reducing costs? First, we should excpect schooling to increase, since we've raised the utility from attending school. Second, the utility effects of reducing costs for students attending school are larger for the poor than for the rich -- since $c$ has a much larger effect on utility when you're starting from a low $w_{0}$. This might suggest the poor will benefit more. Third, it's also the case that the rich are more likely to attend school, so they're more likely to receive a reduced $c$. Fourth, it will depend on how many poor and rich students are ``on the margin'' between attending and not attending. For example, if no poor students are on the margin, then there will be no effect on attendance of the poor.
+
+Recall that getting the poor to attend school more was potentially redistributive on its own, if the poor increase their future earnings when they attend school. Although in general only poorer households were eligible for PROGRESA, some richer households may have had their attendance affected as well (some richer households may have ended up being eligible for PROGRESA, and students were less likely to drop out if their friends stayed in school). We can test this using a triple difference -- we can substract the DID estimate of the effect of PROGRESA on rich households from the DID estimate of the effect of PROGRESA on poor households.
+
+\vspace{1em}
+\resizebox{\textwidth}{!}{
+	$ \displaystyle{\left[ \left( \overline{S}^{2000}_{P,P} - \overline{S}^{1998}_{P,P} \right) - \left( \overline{S}^{2000}_{NP,P} - \overline{S}^{1998}_{NP,P} \right) \right] - \left[ \left( \overline{S}^{2000}_{P,R} - \overline{S}^{1998}_{P,R} \right) - \left( \overline{S}^{2000}_{NP,R} - \overline{S}^{1998}_{NP,R} \right) \right] = \left( \text{something } > 0 \right)} $
+}\vspace{1em}
+This suggests the inequality gap closed -- PROGRESA increased schooling by more for poorer students than it did for richer students.
+
+Following this experiment, the government scaled up PROGRESA nationally. The successful results of the experiment were partially an impetus for the scale-up -- defenders of the policy argued that this was a cost effective way to get poor students to attend school, when the original objective of the policy was simply to be a redistributive transfer.
+
+\section{Policy and RCTs}
+
+An interesting aside to the PROGRESA story is that evidence from an RCT was used to influence policy. How does this happen? Vivalt (2016)\footnote{Only the abstract is currently available, but the author will be presenting the results on November 14th, 4:00pm - 5:30pm in Evans 648.} studies how policymakers update their beliefs about the potential successes of different policies after receiving that information. Although I won't know most of the results until Monday, it's worth noting that two main findings in the abstract are 1) policymakers tend to ignore the standard error on estimates, and 2) policymakers update more based on positive results than on negative results.
+
+I think this segues into a useful discussion -- imagine that you wanted to use hypothetical results from your research project to advocate for or against a particular policy.
+\newpage
+
+\begin{enumerate}
+	\item What are the costs and benefits to using an RCT as opposed to a more quasi-experimental approach for estimating the effect of a policy in order to make the decision about whether or not to scale it?
+	\vspace{8em}
+	\item How might policy makers react differently to these two approaches, and why?\footnote{Vivalt (2016) actually tests this, although her findings aren't in her abstract, so we won't find out her answer to this question until Monday.}
+	\vspace{8em}
+	\item In what contexts is it useful to run an RCT, and in what contexts isn't it?
+	\vspace{8em}
+	\item Was the PROGRESA RCT the right way to advocate for the policy?
+	\vspace{8em}
+\end{enumerate}
+
+\end{document}
