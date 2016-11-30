@@ -187,4 +187,4 @@ g5 <- ggplot(data = eicvh %>% group_by(ubudehe) %>%
 lm(releduc ~ factor(ubudehe), data = eicvh) %>% summary
 lm(releduc ~ maxed + factor(ubudehe), data = eicvh) %>% summary
 lm(releduc ~ maxmaleed + maxfemaleed + factor(ubudehe), data = eicvh) %>% summary
-lm(releduc ~ maxmaleed + maxfemaleed + childrenperadult + factor(ubudehe), data = eicvh) %>% summary
+lm(releduc ~ maxmaleed + maxfemaleed + childrenperadult + factor(ubudehe) + factor(district), data = eicvh) %>% summary

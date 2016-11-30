@@ -1,0 +1,84 @@
+\documentclass[12pt,english]{article}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{caption}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{changepage}
+\onehalfspacing
+\usepackage{babel}
+\newcommand{\expec}{\ensuremath{\mathbb E}}
+\begin{document}
+\begin{center}
+{\Large{}Section 11: Migration} \\
+{\large{}Bryan, Chowdhury, and Mobarak (2014)}
+\par\end{center}{\Large \par}
+
+\begin{center}
+EEP 152
+\par\end{center}
+
+\begin{center}
+November 30, 2016
+\par\end{center}
+
+\begin{itemize}
+	\setlength\itemsep{-0.5em}
+	\item Modeling migration (20 min)
+	\item BCM (15 min)
+	\item Scaling up (15 min)
+\end{itemize}
+A copy of a public version of the paper, along with the section notes, are available on the section Github at \href{github.com/johnloeser/eep152}{github.com/johnloeser/eep152} in the ``section11'' folder.
+
+\section{Modeling migration}
+
+To step back for a moment, it's worth thinking about how we ended up where we are in the course. We started with the general question ``why are some countries/people poor and some countries/people rich'', and slowly broke that question down into a number of categories. Misallocation of credit across firms and human capital gaps both seemed important. Institutions, market failures, and non-convexities seemed potentially important in both cases. We proposed some solutions, and found that some didn't seem particularly effective, and were generally left with more questions than answers.
+
+However, one possible answer to our original question that we haven't yet discussed is ``because poor people are in poor places and rich people are in rich places''. There's a cleverly titled paper ``Economics and Emigration: Trillion-Dollar Bills on the Sidewalk'' (Clemens (2011)) which discusses this exact question -- how much would global income increase by if one moved people from poor countries to rich countries. Within country, Raj Chetty and co-authors have a series of projects in the United States documenting that income mobility is much higher for people growing up in some counties than others, and that children who move to those counties see their income mobility move towards that of children born in those counties. In this case, should an optimal policy simply move everyone (or at least allow everyone to move) to places with the highest incomes? More fundamentally, within country, why doesn't everyone move to the places with the highest incomes?
+
+To understand this, it's worth elaborating on the models we developed in class. Recall in the simplest framework, people compare a rural wage $w_{R}$ to an urban wage $w_{U}$. Individuals will migrate to the urban area if
+$$ w_{U} \geq w_{R} $$
+Suppose now that there are some migration costs $c$. In Bryan, Chowdhury, and Mobarak (2014) (henceforth BCM), this $c$ could represent cost of transportation, or any disutility from working in the city, or being far from family. It could also reflect high costs of obtaining credit to afford transportation costs of migration. The condition is now
+$$ w_{U} - c \geq w_{R} $$
+Let's add in the Harris-Todaro model to this condition -- it's now the case that one gets a formal sector job with probability $p$ paying $w_{U,F}$ and an informal sector job with probability $1 - p$ paying $w_{U,I}$ when one migrates to the city. Additionally, this probability $p$ is a function of the share of workers living in the city, which we'll call $\ell_{U}$. This yields
+$$ p(\ell_{U}) \times w_{U,F} + (1 - p(\ell_{U})) \times w_{U,I} - c \geq w_{R} $$
+We'll assume that the number of jobs in the formal sector is fixed, so $p$ is decreasing in $\ell_{U}$. This also implies that the marginal product of an additional worker in the urban area is $w_{U,I}$, which is less than the $ p(\ell_{U}) \times w_{U,F} + (1 - p(\ell_{U})) \times w_{U,I}$ each worker is paid. This results in overmigration to the urban area relative to the social optimum.
+
+Next, lets include the Lewis model in this framework. Now, $w_{R}$ is also a function of the share of workers living in the rural area, $1 - \ell_{U}$. Additionally, $w_{R}$ is decreasing in this share. In other words, as more workers migrate to the urban area, $w_{R}$ increases.
+$$ p(\ell_{U}) \times w_{U,F} + (1 - p(\ell_{U})) \times w_{U,I} - c \geq w_{R}(1 - \ell_{U}) $$
+Additionally, we'll assume workers are paid the average product of labor (instead of the marginal product). As a result, there is undermigration to the urban area, since the average product of labor is higher than the marginal product.\footnote{This assumes a decreasing marginal product of labor.}
+
+As we can see, we expect there to be a mix of market failures in labor markets across space, which determine where workers migrate to. Some may lead to overmigration (in which case we'd optimally want to tax, or restrict, migration to urban areas), and some may lead to undermigration (in which case we'd optimally want to subsidize, or encourage, migration to urban areas). Additionally, some patterns which may suggest that there is too much or too little migration, such as urban-rural wage gaps, may be driven by selection on human capital into urban areas, high costs or living in urban areas, or high or low relative disutility associated with living in urban areas. Ultimately, we'd like to figure out the optimal migration policy, which will be a function of the determinants of $c$ (subsidies will be optimal if $c$ is driven by credit constraints, but not if $c$ is driven by disutility from being separated from family) and the effect of $\ell_{U}$ on wages in urban areas and rural areas.
+
+\section{BCM}
+
+BCM is a useful case study for how we can estimate the relevance of a particular parameter in the migration decision, $c$. In particular, they can estimate whether $c$ matters, and whether annual components of $c$ (disutility from being separated from family, transportation costs) or one-time components of $c$ (credit constraints for funding initial experimentation with migration, intrahousehold bargaining) are more relevant. If only annual components matter, than we might not want to optimally subsidize migration -- migration is low, but efficient, because the costs of migrating are high. However, if one-time costs matter, and people are not migrating, it suggests that some sort of market failure (credit market failures, positive network spillovers, monopsony village labor markets) or cultural barrier (male utility valued more highly within household) is reducing migration below optimal levels, and subsidizing migration can get villages to an efficient, higher level of migration.
+
+As a quick note, because BCM subsidizes migration for a relatively small number of people, their experiment will not meaningfully change $\ell_{U}$, and as a result will allow us to detect meaningful effects of $\ell_{U}$ on rural and urban wages. Later in section we'll discuss how the authors, in ongoing work, are trying to estimate the effect of $\ell_{U}$ on rural and urban wages.
+
+How can they separate this out? In the experiment, BCM subsidize migration within treatment villages, and do not subsidize within control villages. They find that people are about 25pp more likely to migrate in treatment villages in the year of the experiment, and also that they remain about 10pp more likely to migrate in years after the experiment is over. This suggests that costs of the initial migration, that are not incurred in subsequent migrations, are important.
+
+However, it is difficult to know the exact channel, and whether migrations subsidies would be optimal. It's possible, for example, that we were already at a social optimum, where non-migrants are indifferent between migrating and not migrating, and do not migrate because they are risk averse about the possibility of not finding a good job when they reach the city. BCM attempt to rule this out by carefully modeling the migration decision, and find that an implausible degree of risk aversion is needed to explain the decision not to migrate. However, learning about migration may combine with some positive spillover. For example, I may be able to share some of the costs of migration with my friends (e.g. searching for jobs and housing in the city), and as a result migration may be less costly when my friends also migrate. In this case, if social networks are unable to internally subsidize migration, migration subsidies may be optimal.
+
+\section{Scaling up}
+
+At the end of the day, the experiment leaves a lot of questions. Ideally, before scaling the experiment up, we would like to know about the general equilibrium effects of the experiment. The experiment, with its initial design, allows estimation of the partial equilibrium effect of the experiment -- what would happen if a small number of people in one village were given migration subsidies. However, we would ideally like to know the general equilibrium effects -- what would happen if a large number of people in a large number of villages were given migration subsidies?
+
+Fortunately, the authors of this study were aware of this. They recently partnered with Evidence Action, an NGO funded by The Bill \& Melinda Gates Foundation which scales up evidence based interventions, most famously distribution of deworming pills (through ``Deworm the World''). They developed a product called ``No Lean Season'', which is off season subsidies for migration in poor rural areas in the same spirit as BCM. However, because of the importance of estimating the general equilibrium effects of the intervention, the authors designed an experiment to test the importance of those general equilibrium channels, in an attempt to uncover whether migration subsidies are optimal.
+
+This is possible in a few ways. First, recall that we first wanted to decompose $c$. In particular, $c$ may be paid privately or socially, and it may be paid once or annually. BCM found that a significant component of $c$ is paid just on the first migration, but we would still like to know to what extent $c$ is paid privately (e.g. disutility from living in urban areas), and to what extent $c$ is paid socially (when I migrate, it reduces the cost of migration for others, e.g. through network effects). Second, we want to understand the effect of $\ell_{U}$ on $w_{R}$. We would like to ask what happens to rural wages when more people migrate out of the rural area. Third, we want to understand the effect of $\ell_{U}$ on urban areas. We would like to ask what happens to urban wages when more people migrate out of the rural area, and ideally separately for natives (people from the urban area) and migrants (people who migrated to the urban area).
+
+Questions 1) and 2) the authors have managed to answer in currently unpublished work. To do this, they went beyond randomizing villages into control and treatment and also randomized the \textbf{intensity} of treatment within treatment villages. In particular, in treatment villages between 10\% and 50\% of the population had their migration subsidized. To answer question 1), the authors compare migration of \textbf{untreated} individuals in treatment villages in the 10\% and 50\% villages. They find that untreated individuals, who received no migration subsidy, were significantly more likely to migrate in 50\% villages than in 10\% villages, suggesting that their migration costs fell when other villagers migrated. This is consistent with positive externalities from migration within village. To answer question 2), the authors compare rural wages in 10\% and 50\% villages, and find that wages are higher in the 50\% villages. In fact, they find that even though many more individuals migrate out of the 50\% villages, wages increase by enough that total earnings in 50\% villages remains the same (excluding earnings from migration) relative to 10\% villages and control villages. Although this is consistent with the Lewis Model, it's also consistent with increased migration increasing workers' bargaining power in 50\% villages, which can occur if farmers (who hire potential migrants) have market power in rural labor markets. Once again, this suggests that migration subsidies would be optimal.
+
+Question 3) requires a different strategy to answer. In particular, ideally we would like to randomize the number of migrants flowing to different urban areas. In fact, No Lean Season is running an intervention to test this in Indonesia. By randomizing the share of treated villages within the catchment area (the area from which migrants from those villages are extremely likely to migrate to that urban area), the number of migrants to urban areas will be higher in urban areas which had a larger share of treated villages. This will allow variation in $\ell_{U}$ across urban areas, which will allow estimation of the effect of $\ell_{U}$ on urban wages, for natives and migrants. To some extent, this question has been studied previously, even in Indonesia -- Kleemans and Magruder (2016) find migration leads to a decrease in wages in urban areas, by generating exogenous shocks to migration using rainfall in the catchment area. However, this does not necessarily mean that migration restrictions are optimal -- in particular, it will depend on how migrant wages are determined. Additionally, the migration induced by rainfall may be very different from the migration induced by subsidies -- if we want to make a decision about whether or not to scale up No Lean Season, we would ideally want to know about the effect of No Lean Season on urban wages, and not necessarily other shocks to migration. Absent the feasibility of such an experiment, however, quasi-experimental variation in migration (such as the variation Kleemans and Magruder (2016) study) can be used to estimate a model to help us make this decision.
+
+Bringing all of this evidence together to make a decision about the optimal policy can be hard. What should the optimal subsidy be? What share of individuals should receive the subsidy? Should all cities be targeted? However, experiments such as the one run by No Lean Season make it possible to start to ask these sorts of questions, and provide a framework for asking difficult, and important, policy questions.
+
+\end{document}
